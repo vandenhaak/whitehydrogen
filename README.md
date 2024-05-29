@@ -1,2 +1,17 @@
-# whitehydrogen
-this is a decentralized framework for investment in white hydrogen (a.k.a. natural hydrogen)
+# White Hydrogen
+This is a decentralized framework for investment in white hydrogen (a.k.a. natural hydrogen)
+
+[](The following questions are from the submission form)
+### What are we solving?
+...
+
+### Technical Explanation
+...
+
+### Collaborators
+This project was built at EasyA Consensus Hackathon in Austin, Texas with the following team:
+- Peter Macdonald
+- Andrea Van Den Haak
+- Kimberly ...
+- ... ...
+- ... ...
