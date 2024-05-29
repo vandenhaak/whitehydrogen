@@ -1,7 +1,6 @@
 # White Hydrogen
 This is a decentralized framework for investment in white hydrogen (a.k.a. natural hydrogen)
 
-[](The following questions are from the submission form)
 ### What are we solving?
 ...
 
