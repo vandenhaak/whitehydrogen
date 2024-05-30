@@ -12,5 +12,5 @@ This project was built at EasyA Consensus Hackathon in Austin, Texas with the fo
 - Peter Macdonald
 - Andrea Van Den Haak
 - Kimberly Allison Patton
-- ... ...
+- Samira Kadija Dabo
 - ... ...
