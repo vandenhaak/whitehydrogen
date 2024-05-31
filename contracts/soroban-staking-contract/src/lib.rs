@@ -14,7 +14,8 @@ pub enum DataKey {
     IsActive,
     Admin,
     Initialized,
-    Deadline
+    Deadline,
+    RecoveredDeposit(Address)
 }
 
 // The `#[contract]` attribute marks a type as being the type that contract functions are attached for.
@@ -129,7 +130,10 @@ impl StakingContract {
         token::Client::new(&env, &share_token).mint(&contributor, &amount);
         // Update the contribution in the storage
         Self::set_contribution(env.clone(), contributor.clone(), amount);
-        env.storage().instance().set(&DataKey::Contributors, &contributor_list)
+        env.storage().instance().set(&DataKey::Contributors, &contributor_list);
+
+        env.storage().instance().set(&DataKey::RecoveredDeposit(contributor),&false);
+
     }
 
     /// Withdraws the contribution made by a contributor if the staking is active.
@@ -160,7 +164,14 @@ impl StakingContract {
         // // Burn the share token
         let share_token = Self::get_share_token(env.clone());
         token::Client::new(&env, &share_token).burn(&contributor, &contribution);
+        env.storage().instance().set(&DataKey::RecoveredDeposit(contributor),&true);
+
     }
+
+        // 
+        pub fn check_repayment(env: Env, contributor: Address) -> bool{
+            env.storage().instance().get(&DataKey::RecoveredDeposit(contributor)).unwrap_or(false)
+        }
 
         // Disburse
         pub fn disbursment(env: Env, admin_address: Address, recipient: Address, token: Address, amount: i128) {
@@ -173,6 +184,8 @@ impl StakingContract {
             }
             token::Client::new(&env, &token).transfer(&admin_address, &recipient, &amount);
         }
+
+        
 
     /// Clear the contributor from the storage
     pub fn clear_contributor(env: Env, contributor: Address) {
